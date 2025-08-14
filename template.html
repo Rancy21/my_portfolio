@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(200%) blur(20px);
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            z-index: 50;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-brand {
+            font-size: 1.125rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin-left: 2.5rem;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1f2937;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #6b7280;
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-outline {
+            color: #1f2937;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .btn-outline:hover {
+            background: rgba(31, 41, 55, 0.1);
+        }
+
+        .btn-dark {
+            background: #1f2937;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-dark:hover {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: white;
+            padding: 2rem 0;
+            min-height: 60vh;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            min-height: 60vh;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            padding-right: 4rem;
+        }
+
+        .email-form {
+            margin-bottom: 2rem;
+        }
+
+        .email-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group {
+            position: relative;
+            flex: 1;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            background: transparent;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1f2937;
+            border-width: 2px;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 0.75rem;
+            top: -0.375rem;
+            background: white;
+            padding: 0 0.25rem;
+            font-size: 0.6875rem;
+            color: #6b7280;
+        }
+
+        .btn-require {
+            padding: 0.75rem 1rem;
+            background: #1f2937;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .terms-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .terms-link {
+            color: #1f2937;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            height: 36rem;
+            width: 100%;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        /* Client Logos Section */
+        .clients {
+            padding: 7rem 0;
+            text-align: center;
+        }
+
+        .clients h6 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .client-logos {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .client-logo {
+            width: 10rem;
+            height: 3rem;
+            background: #f3f4f6;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #6b7280;
+            opacity: 0.7;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 2rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1f2937;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: #6b7280;
+            max-width: 83.333333%;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .skill-card {
+            background: transparent;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-icon {
+            width: 3rem;
+            height: 3rem;
+            background: #1f2937;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+        }
+
+        .skill-card h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-card p {
+            color: #6b7280;
+            padding: 0 2rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 7rem 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: transparent;
+        }
+
+        .project-image {
+            height: 12rem;
+            background: #f3f4f6;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #9ca3af;
+        }
+
+        .project-content h5 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+        }
+
+        /* Resume Section */
+        .resume {
+            padding: 6rem 0;
+        }
+
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .resume-content h2 {
+            font-size: 2.25rem;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+
+        .resume-content p {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            max-width: 75%;
+        }
+
+        .btn-text {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #1f2937;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 0.75rem 1.5rem;
+            transition: background 0.3s;
+        }
+
+        .btn-text:hover {
+            background: rgba(31, 41, 55, 0.1);
+        }
+
+        .resume-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            padding-right: 3rem;
+        }
+
+        .resume-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .resume-icon {
+            width: 3rem;
+            height: 3rem;
+            background: #1f2937;
+            color: white;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .resume-text {
+            color: #6b7280;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 0;
+        }
+
+        .contact-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 3fr 4fr;
+            gap: 2.5rem;
+        }
+
+        .contact-info {
+            background: #1f2937;
+            border-radius: 0.5rem;
+            padding: 2rem 4rem;
+            color: white;
+        }
+
+        .contact-info h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info p {
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form {
+            padding: 1.25rem 2.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-field {
+            position: relative;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #d1d5db;
+            padding: 1.25rem 0 0.5rem 0;
+            font-size: 0.875rem;
+            color: #1f2937;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-bottom-color: #1f2937;
+            border-bottom-width: 2px;
+        }
+
+        .form-field label {
+            position: absolute;
+            left: 0;
+            top: -0.625rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .radio-group {
+            margin-bottom: 3.5rem;
+        }
+
+        .radio-group p {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 1px solid #d1d5db;
+            border-radius: 50%;
+        }
+
+        .radio-option label {
+            color: #4b5563;
+            font-weight: 300;
+        }
+
+        .form-submit {
+            text-align: right;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 2.5rem;
+            padding: 5rem 0 1.5rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer p {
+            color: #4b5563;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #1f2937;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                order: 2;
+            }
+
+            .hero-image {
+                order: 1;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 1.875rem;
+            }
+
+            .hero-content p {
+                padding-right: 0;
+            }
+
+            .section-title {
+                font-size: 2.25rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-brand">Portfolio</div>
+                <ul class="nav-menu">
+                    <li><a href="#home">📄 Home</a></li>
+                    <li><a href="#about">👤 About</a></li>
+                    <li><a href="#docs">📝 Projects</a></li>
+                </ul>
+                <div class="nav-buttons">
+                    <a href="#" class="btn btn-outline">Sign In</a>
+                    <a href="#" class="btn btn-dark">Contact</a>
+                </div>
+                <button class="mobile-menu">
+                    <div style="width: 24px; height: 3px; background: #333; margin: 3px 0;"></div>
+                    <div style="width: 24px; height: 3px; background: #333; margin: 3px 0;"></div>
+                    <div style="width: 24px; height: 3px; background: #333; margin: 3px 0;"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Welcome to my Web<br>Development Portfolio!</h1>
+                    <p>I'm Alex Johnson, a passionate web developer based in USA. Here, you'll get a glimpse of my journey in the world of web development, where creativity meets functionality.</p>
+                    
+                    <div class="email-form">
+                        <label class="email-label">Your email</label>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <input type="email" class="form-input" placeholder=" ">
+                                <label class="form-label">Enter your email</label>
+                            </div>
+                            <button class="btn-require">get started</button>
+                        </div>
+                    </div>
+                    
+                    <p class="terms-text">Read my <a href="#" class="terms-link">Terms and Conditions</a></p>
+                </div>
+                <div class="hero-image">🚀</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Logos -->
+    <section class="clients">
+        <div class="container">
+            <h6>My awesome clients</h6>
+            <div class="client-logos">
+                <div class="client-logo">Coinbase</div>
+                <div class="client-logo">Spotify</div>
+                <div class="client-logo">Pinterest</div>
+                <div class="client-logo">Google</div>
+                <div class="client-logo">Amazon</div>
+                <div class="client-logo">Netflix</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="about" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">my skills</p>
+                <h1 class="section-title">What I do</h1>
+                <p class="section-description">I'm not just a developer; I'm a digital dreamweaver. Crafting immersive online experiences is not just a job but my calling. Discover below how I can help you.</p>
+            </div>
+            
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">📱</div>
+                    <h5>Frontend Web Development</h5>
+                    <p>Creating beautiful and functional web experiences is my forte. Using the latest technologies and best practices, I design and build websites that captivate and engage users.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">📲</div>
+                    <h5>Mobile App Development</h5>
+                    <p>I specialize in creating responsive and intuitive mobile apps that work seamlessly across iOS & Android devices. From concept to deployment, I handle every stage of the development process.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🛠️</div>
+                    <h5>Technology Stack</h5>
+                    <p>I'm well-versed in the industry's most popular frontend technologies, including HTML5, CSS3, JavaScript, and frameworks like React and React Native.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h5>Web Optimization</h5>
+                    <p>Performance matters. I optimize websites and apps for speed, ensuring your users enjoy a fast and responsive experience, which in turn boosts user satisfaction and SEO rankings.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">👁️</div>
+                    <h5>User-Centric Design</h5>
+                    <p>My development goes hand-in-hand with an eye for design. I create user interfaces that are not only functional but also aesthetically pleasing, providing a seamless and enjoyable user journey.</p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🧪</div>
+                    <h5>Testing and Quality Assurance</h5>
+                    <p>I rigorously test and debug applications to guarantee a bug-free and secure environment for users. Your peace of mind is as important to me as the functionality of your project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="docs" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Projects</h2>
+                <p class="section-description">Whether you have a mobile app idea that needs to come to life or a website that requires a facelift, I'm here to turn your digital dreams into reality.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h5>Mobile App Development</h5>
+                        <p>Mobile app designed to help users discover and explore local restaurants and cuisines.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h5>Landing Page Development</h5>
+                        <p>Promotional landing page for a fitness website Summer Campaign. Form development included.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h5>Mobile App Development</h5>
+                        <p>Mobile app designed to help users discover and explore local restaurants and cuisines.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🛒</div>
+                    <div class="project-content">
+                        <h5>E-commerce development</h5>
+                        <p>Ecommerce website offering access to the latest and greatest gadgets and accessories.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h5>Mobile App Development</h5>
+                        <p>Mobile app designed to help users discover and explore local restaurants and cuisines.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h5>Landing Page Development</h5>
+                        <p>Promotional landing page for a fitness website Summer Campaign. Form development included.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">📱</div>
+                    <div class="project-content">
+                        <h5>Mobile App Development</h5>
+                        <p>Mobile app designed to help users discover and explore local restaurants and cuisines.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">🛒</div>
+                    <div class="project-content">
+                        <h5>E-commerce development</h5>
+                        <p>Ecommerce website offering access to the latest and greatest gadgets and accessories.</p>
+                        <a href="#" class="btn btn-dark btn-small">see details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section class="resume">
+        <div class="container">
+            <div class="resume-container">
+                <div class="resume-content">
+                    <h2>My Resume</h2>
+                    <p>Highly skilled and creative Web Developer with 5+ years of experience in crafting visually stunning and functionally robust websites and web applications.</p>
+                    <a href="#" class="btn-text">
+                        view more
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="resume-items">
+                    <div class="resume-item">
+                        <div class="resume-icon">📊</div>
+                        <p class="resume-text">Bachelor of Science in Computer Science</p>
+                    </div>
+                    <div class="resume-item">
+                        <div class="resume-icon">🏆</div>
+                        <p class="resume-text">Certified Web Developer</p>
+                    </div>
+                    <div class="resume-item">
+                        <div class="resume-icon">⚡</div>
+                        <p class="resume-text">Frontend Framework Proficiency Certification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">Contact Us</h1>
+                <p class="section-description">Ready to get started? Feel free to reach out through the contact form, and let's embark on a journey of innovation and success.</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h4>Contact Information</h4>
+                        <p>Fill up the form and our Team will get back to you within 24 hours.</p>
+                        
+                        <div class="contact-item">
+                            <span>📞</span>
+                            <h6>+1(424) 535 3523</h6>
+                        </div>
+                        <div class="contact-item">
+                            <span>✉️</span>
+                            <h6>hello@mail.com</h6>
+                        </div>
+                        <div class="contact-item">
+                            <span>🎫</span>
+                            <h6>Open Support Ticket</h6>
+                        </div>
+                        
+                        <div style="margin-top: 2.5rem; display: flex; gap: 1.25rem;">
+                            <button style="background: rgba(255,255,255,0.1); border: none; padding: 0.5rem; border-radius: 0.5rem; color: white; cursor: pointer;">f</button>
+                            <button style="background: rgba(255,255,255,0.1); border: none; padding: 0.5rem; border-radius: 0.5rem; color: white; cursor: pointer;">📷</button>
+                            <button style="background: rgba(255,255,255,0.1); border: none; padding: 0.5rem; border-radius: 0.5rem; color: white; cursor: pointer;">🔗</button>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form">
+                        <div class="form-grid">
+                            <div class="form-field">
+                                <input type="text" placeholder="eg. Lucas" name="first-name">
+                                <label>First Name</label>
+                            </div>
+                            <div class="form-
